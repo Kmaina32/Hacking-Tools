@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Tools Suite - Web Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <div>
+                        <h1>Hacking Tools Suite</h1>
+                        <p>Educational Security Tools</p>
+                    </div>
+                </div>
+                <div class="status">
+                    <span class="status-indicator online"></span>
+                    <span id="status-text">Ready</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <button class="nav-btn active" data-category="all">All Tools</button>
+            <button class="nav-btn" data-category="Network">Network</button>
+            <button class="nav-btn" data-category="Cryptography">Cryptography</button>
+            <button class="nav-btn" data-category="Web Security">Web Security</button>
+            <button class="nav-btn" data-category="Password">Password</button>
+            <button class="nav-btn" data-category="Social Engineering">Social Eng.</button>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar - Tool List -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Tools</h2>
+                </div>
+                <div id="tool-list" class="tool-list">
+                    <!-- Tools will be loaded here by JavaScript -->
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <main class="main-panel">
+                <!-- Welcome Screen -->
+                <div id="welcome-screen" class="panel-content welcome-screen">
+                    <div class="welcome-content">
+                        <h2>Welcome to Hacking Tools Suite</h2>
+                        <p>Educational Security Tools for Learning Cybersecurity Concepts</p>
+                        
+                        <div class="welcome-grid">
+                            <div class="welcome-card">
+                                <div class="card-icon">🌐</div>
+                                <h3>Network Tools</h3>
+                                <p>Port scanning and network discovery</p>
+                            </div>
+                            <div class="welcome-card">
+                                <div class="card-icon">🔐</div>
+                                <h3>Cryptography</h3>
+                                <p>Encryption and hashing utilities</p>
+                            </div>
+                            <div class="welcome-card">
+                                <div class="card-icon">🎯</div>
+                                <h3>Web Security</h3>
+                                <p>SQL Injection and XSS testing</p>
+                            </div>
+                            <div class="welcome-card">
+                                <div class="card-icon">🔑</div>
+                                <h3>Password Analysis</h3>
+                                <p>Strength analysis and entropy</p>
+                            </div>
+                            <div class="welcome-card">
+                                <div class="card-icon">⚠️</div>
+                                <h3>Phishing Detection</h3>
+                                <p>Email and URL threat analysis</p>
+                            </div>
+                            <div class="welcome-card">
+                                <div class="card-icon">📚</div>
+                                <h3>Educational</h3>
+                                <p>Learn cybersecurity concepts</p>
+                            </div>
+                        </div>
+
+                        <div class="welcome-disclaimer">
+                            <h3>⚠️ Important Disclaimer</h3>
+                            <p>These tools are for <strong>EDUCATIONAL PURPOSES ONLY</strong></p>
+                            <p>Only use on systems you own or have explicit permission to test.</p>
+                            <p>Unauthorized access is ILLEGAL.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool Panels (Hidden by default) -->
+                <div id="tool-panels"></div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Hacking Tools Suite - Educational Purpose Only | 
+               <a href="#" onclick="showSecurityTips()">Security Tips</a> | 
+               <a href="#" onclick="showAbout()">About</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Modal for Security Tips -->
+    <div id="tips-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTipsModal()">&times;</span>
+            <h2>Security Awareness Tips</h2>
+            <div id="tips-list" class="tips-list"></div>
+        </div>
+    </div>
+
+    <!-- Modal for About -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAboutModal()">&times;</span>
+            <h2>About Hacking Tools Suite</h2>
+            <div class="about-content">
+                <p><strong>Version:</strong> 1.0.0</p>
+                <p><strong>Purpose:</strong> Educational security learning platform</p>
+                <p><strong>Tools Included:</strong> 7 comprehensive security tools</p>
+                <h3>Legal Notice</h3>
+                <p>These tools are provided for educational purposes only. Unauthorized access to computer systems is illegal. Always obtain proper authorization before testing.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
