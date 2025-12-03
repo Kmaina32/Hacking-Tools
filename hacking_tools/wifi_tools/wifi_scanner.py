@@ -89,11 +89,17 @@ class WiFiScanner:
             cipher_match = re.search(r'Cipher\s*:\s*(.+)', output)
             signal_match = re.search(r'Signal\s*:\s*(\d+)%', output)
             
+            ssid = ssid_match.group(1).strip() if ssid_match else 'Unknown'
+            
+            # Try to get password for current network
+            password = WiFiScanner.get_saved_password(ssid)
+            
             return {
-                'ssid': ssid_match.group(1).strip() if ssid_match else 'Unknown',
+                'ssid': ssid,
                 'authentication': auth_match.group(1).strip() if auth_match else 'Unknown',
                 'cipher': cipher_match.group(1).strip() if cipher_match else 'Unknown',
                 'signal': int(signal_match.group(1)) if signal_match else 0,
+                'password': password,
                 'connected': True
             }
         
@@ -103,9 +109,57 @@ class WiFiScanner:
                 'authentication': 'N/A',
                 'cipher': 'N/A',
                 'signal': 0,
+                'password': None,
                 'connected': False,
                 'error': str(e)
             }
+    
+    @staticmethod
+    def get_saved_password(ssid: str) -> str:
+        """Get saved password for a WiFi network."""
+        try:
+            output = subprocess.check_output(
+                ['netsh', 'wlan', 'show', 'profile', f'name="{ssid}"', 'key=clear'],
+                stderr=subprocess.DEVNULL
+            ).decode('utf-8', errors='ignore')
+            
+            # Extract password
+            password_match = re.search(r'Key Content\s*:\s*(.+)', output)
+            if password_match:
+                return password_match.group(1).strip()
+            
+            return None
+        except Exception:
+            return None
+    
+    @staticmethod
+    def get_all_saved_passwords() -> List[Dict]:
+        """Get all saved WiFi passwords."""
+        passwords = []
+        try:
+            # Get all profiles
+            profiles_output = subprocess.check_output(
+                ['netsh', 'wlan', 'show', 'profiles'],
+                stderr=subprocess.DEVNULL
+            ).decode('utf-8', errors='ignore')
+            
+            # Extract profile names
+            profile_matches = re.findall(r':\s*(.+)', profiles_output)
+            
+            for profile in profile_matches:
+                profile = profile.strip()
+                if profile and not profile.startswith('('):
+                    password = WiFiScanner.get_saved_password(profile)
+                    if password:
+                        passwords.append({
+                            'ssid': profile,
+                            'password': password
+                        })
+            
+        except Exception as e:
+            pass
+        
+        return passwords
 
 
 class WiFiSecurity:

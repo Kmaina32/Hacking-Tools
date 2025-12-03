@@ -134,12 +134,12 @@ def main():
         print_menu()
         
         try:
-            choice = input("\n[?] Select a tool (0-7): ").strip()
-            
+            choice = input("\n[?] Select a tool (0-13): ").strip()
+
             if choice == '0':
                 print("\n[*] Exiting Hacking Tools Suite. Stay safe and ethical!")
                 break
-            
+
             if choice in TOOLS_MENU:
                 run_tool(choice)
                 input("\n[*] Press Enter to continue...")
