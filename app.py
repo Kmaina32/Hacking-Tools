@@ -40,6 +40,7 @@ from hacking_tools.wifi_tools.deauth_attack import DeauthAttack
 from hacking_tools.wifi_tools.wpa_handshake_capturer import WPAHandshakeCapturer
 from hacking_tools.wifi_tools.wifi_password_cracker import WiFiPasswordCracker
 from hacking_tools.wifi_tools.evil_twin import EvilTwinAP
+from hacking_tools.mdm_tools import MDMAnalyzer, MDMRemover
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
@@ -1176,33 +1177,33 @@ if __name__ == '__main__':
         print("[*] Database initialized")
     
     print("""
-    ╔════════════════════════════════════════════════════════════╗
-    ║     HACKING TOOLS WEB APPLICATION - STARTING               ║
-    ╚════════════════════════════════════════════════════════════╝
+    ============================================================
+         HACKING TOOLS WEB APPLICATION - STARTING
+    ============================================================
     
-    📍 Access the application at: http://localhost:5000
-    💾 Database: SQLite (hacking_tools.db)
+    [*] Access the application at: http://localhost:5000
+    [*] Database: SQLite (hacking_tools.db)
     
     Available Tools:
-      🌐 Port Scanner
-      📡 WiFi Scanner
-      🔒 WiFi Security Analyzer
-      📊 WiFi Channel Analyzer
-      🔍 Connection Analyzer (NEW)
-      🔑 Password Analyzer (NEW)
-      ⚠️  Security Vulnerability Tester (NEW)
-      🗺️  Network Mapping (NEW)
-      ⚡ Deauthentication Attack (NEW)
-      📡 WPA Handshake Capturer (NEW)
-      🔓 WiFi Password Cracker (NEW)
-      👤 Evil Twin Attack (NEW)
-      🔐 Cipher Tools (Caesar, Vigenère, Base64, Hashing)
-      🎯 Injection Tester (SQL & XSS)
-      🔑 Password Strength Analyzer
-      ⚠️  Phishing Detector
+      - Port Scanner
+      - WiFi Scanner
+      - WiFi Security Analyzer
+      - WiFi Channel Analyzer
+      - Connection Analyzer (NEW)
+      - Password Analyzer (NEW)
+      - Security Vulnerability Tester (NEW)
+      - Network Mapping (NEW)
+      - Deauthentication Attack (NEW)
+      - WPA Handshake Capturer (NEW)
+      - WiFi Password Cracker (NEW)
+      - Evil Twin Attack (NEW)
+      - Cipher Tools (Caesar, Vigenere, Base64, Hashing)
+      - Injection Tester (SQL & XSS)
+      - Password Strength Analyzer
+      - Phishing Detector
     
     Press Ctrl+C to stop the server
-    ════════════════════════════════════════════════════════════
+    ============================================================
     """)
     
     app.run(debug=True, host='localhost', port=5000)

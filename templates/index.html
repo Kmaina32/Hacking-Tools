@@ -3,224 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacking Tools Suite - Security Toolkit</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="description" content="Professional Security Toolkit - Comprehensive Hacking Tools Suite">
+    <title>Hacking Tools Suite - Professional Security Toolkit</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">></div>
+                <!-- Logo -->
+                <div class="logo" onclick="showDashboard()">
+                    <div class="logo-icon"></div>
                     <div>
-                        <h1>Hacking Tools Suite</h1>
+                        <h1>HACKING TOOLS</h1>
                         <p>Professional Security Toolkit</p>
                     </div>
                 </div>
                 
-                <!-- Navigation Menu -->
-                <nav class="header-nav">
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [NET] Network
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('port_scanner'); return false;">Port Scanner</a>
-                            <a href="#" onclick="showToolById('network_mapping'); return false;">Network Mapping</a>
-                            <a href="#" onclick="showToolById('wifi_scanner'); return false;">WiFi Scanner</a>
-                            <a href="#" onclick="showToolById('wifi_security'); return false;">WiFi Security</a>
-                            <a href="#" onclick="showToolById('channel_analyzer'); return false;">Channel Analyzer</a>
-                            <a href="#" onclick="showToolById('wifi_connection_analyzer'); return false;">Connection Analyzer</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [CRYPTO] Cryptography
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('caesar_cipher'); return false;">Caesar Cipher</a>
-                            <a href="#" onclick="showToolById('vigenere_cipher'); return false;">Vigenère Cipher</a>
-                            <a href="#" onclick="showToolById('base64_cipher'); return false;">Base64 Encoder</a>
-                            <a href="#" onclick="showToolById('hash_tools'); return false;">Hash Generator</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [WEB] Web Security
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('sql_injection'); return false;">SQL Injection Tester</a>
-                            <a href="#" onclick="showToolById('xss_tester'); return false;">XSS Tester</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [PWD] Password
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('password_strength'); return false;">Password Strength</a>
-                            <a href="#" onclick="showToolById('wifi_password_analyzer'); return false;">WiFi Password Analyzer</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [WIFI] WiFi Attacks
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('deauth_attack'); return false;">Deauth Attack</a>
-                            <a href="#" onclick="showToolById('wpa_handshake_capturer'); return false;">WPA Handshake</a>
-                            <a href="#" onclick="showToolById('wifi_password_cracker'); return false;">Password Cracker</a>
-                            <a href="#" onclick="showToolById('evil_twin'); return false;">Evil Twin</a>
-                            <a href="#" onclick="showToolById('wifi_security_test'); return false;">Security Test</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [SOC] Social Engineering
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('phishing_detector'); return false;">Phishing Detector</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [EXPLOIT] Exploitation
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('exploit_framework'); return false;">Exploit Framework</a>
-                            <a href="#" onclick="showToolById('payload_generator'); return false;">Payload Generator</a>
-                            <a href="#" onclick="showToolById('reverse_shell'); return false;">Reverse Shell</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [RECON] Reconnaissance
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('subdomain_scanner'); return false;">Subdomain Scanner</a>
-                            <a href="#" onclick="showToolById('dns_enumeration'); return false;">DNS Enumeration</a>
-                            <a href="#" onclick="showToolById('whois_lookup'); return false;">Whois Lookup</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-group">
-                        <button class="nav-group-btn" onclick="toggleNavGroup(this)">
-                            [STEGO] Steganography
-                            <span class="nav-arrow">▼</span>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="#" onclick="showToolById('image_steganography'); return false;">Image Steganography</a>
-                            <a href="#" onclick="showToolById('text_steganography'); return false;">Text Steganography</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nav-spacer"></div>
-                    
-                    <div class="header-actions">
-                        <button class="nav-btn-icon" onclick="showSecurityTips()" title="Security Tips">?</button>
-                        <button class="nav-btn-icon" onclick="showAbout()" title="About">i</button>
-                    </div>
-                </nav>
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="tool-search" 
+                        placeholder="Search tools... (Ctrl+K)"
+                        onkeyup="searchTools(this.value)"
+                    >
+                    <span class="search-icon">🔍</span>
+                </div>
                 
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="icon-btn" onclick="toggleFavorites()" title="Favorites">
+                        ⭐
+                    </button>
+                    <button class="icon-btn" onclick="showSecurityTips()" title="Security Tips">
+                        💡
+                    </button>
+                    <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme" id="theme-toggle">
+                        🌙
+                    </button>
+                    <button class="icon-btn" onclick="showAbout()" title="About">
+                        ℹ️
+                    </button>
+                </div>
+                
+                <!-- Status -->
                 <div class="status">
-                    <div class="status-indicator online" id="status-indicator"></div>
-                    <span id="status-text">Online</span>
+                    <div class="status-indicator" id="status-indicator"></div>
+                    <span class="status-text" id="status-text">Online</span>
                 </div>
             </div>
         </header>
 
         <!-- Main Content -->
         <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar" id="sidebar">
+                <!-- Quick Access -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Quick Access</h3>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link active" onclick="showDashboard(); return false;">
+                                <span class="sidebar-icon">📊</span>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showRecent(); return false;">
+                                <span class="sidebar-icon">🕐</span>
+                                <span>Recent Activity</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showFavorites(); return false;">
+                                <span class="sidebar-icon">⭐</span>
+                                <span>Favorites</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tool Categories -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Network Tools</h3>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('port_scanner'); return false;">
+                                <span class="sidebar-icon">🔌</span>
+                                <span>Port Scanner</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('wifi_scanner'); return false;">
+                                <span class="sidebar-icon">📡</span>
+                                <span>WiFi Scanner</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('network_mapping'); return false;">
+                                <span class="sidebar-icon">🗺️</span>
+                                <span>Network Mapping</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Cryptography</h3>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('caesar_cipher'); return false;">
+                                <span class="sidebar-icon">🔐</span>
+                                <span>Caesar Cipher</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('vigenere_cipher'); return false;">
+                                <span class="sidebar-icon">🔒</span>
+                                <span>Vigenère Cipher</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('base64_cipher'); return false;">
+                                <span class="sidebar-icon">📝</span>
+                                <span>Base64 Encoder</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('hash_tools'); return false;">
+                                <span class="sidebar-icon">#️⃣</span>
+                                <span>Hash Generator</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Web Security</h3>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('sql_injection'); return false;">
+                                <span class="sidebar-icon">💉</span>
+                                <span>SQL Injection</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('xss_tester'); return false;">
+                                <span class="sidebar-icon">⚠️</span>
+                                <span>XSS Tester</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Password Tools</h3>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('password_strength'); return false;">
+                                <span class="sidebar-icon">🔑</span>
+                                <span>Password Analyzer</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Social Engineering</h3>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" onclick="showToolById('phishing_detector'); return false;">
+                                <span class="sidebar-icon">🎣</span>
+                                <span>Phishing Detector</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
             <!-- Main Panel -->
-            <main class="main-panel">
-                <!-- Welcome Screen -->
-                <div class="welcome-screen active" id="welcome-screen">
-                    <div class="welcome-content">
-                        <div class="welcome-icon">></div>
+            <main class="main-panel" id="main-panel">
+                <!-- Dashboard (Welcome Screen) -->
+                <div class="welcome-screen active" id="dashboard">
+                    <div class="welcome-header">
+                        <div class="welcome-icon">&gt;_</div>
                         <h2>Welcome to Hacking Tools Suite</h2>
-                        <p>A comprehensive collection of security and penetration testing tools</p>
-                        
-                        <div class="welcome-grid">
-                            <div class="welcome-card" onclick="showToolById('port_scanner')">
-                                <div class="card-icon">[NET]</div>
-                                <h3>Network Tools</h3>
-                                <p>Port scanning, network mapping, and WiFi analysis</p>
-                            </div>
-                            <div class="welcome-card" onclick="showToolById('caesar_cipher')">
-                                <div class="card-icon">[CRYPTO]</div>
-                                <h3>Cryptography</h3>
-                                <p>Ciphers, encoding, and hash generation</p>
-                            </div>
-                            <div class="welcome-card" onclick="showToolById('sql_injection')">
-                                <div class="card-icon">[WEB]</div>
-                                <h3>Web Security</h3>
-                                <p>SQL injection and XSS testing</p>
-                            </div>
-                            <div class="welcome-card" onclick="showToolById('password_strength')">
-                                <div class="card-icon">[PWD]</div>
-                                <h3>Password Tools</h3>
-                                <p>Strength analysis and security testing</p>
-                            </div>
-                            <div class="welcome-card" onclick="showToolById('phishing_detector')">
-                                <div class="card-icon">[SOC]</div>
-                                <h3>Social Engineering</h3>
-                                <p>Phishing detection and awareness</p>
-                            </div>
-                            <div class="welcome-card" onclick="showToolById('wifi_scanner')">
-                                <div class="card-icon">[WIFI]</div>
-                                <h3>WiFi Tools</h3>
-                                <p>Network scanning and security analysis</p>
+                        <p>Your comprehensive security testing and penetration testing toolkit</p>
+                    </div>
+
+                    <!-- Statistics Dashboard -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <div class="stat-value" id="total-tools">24</div>
+                                    <div class="stat-label">Total Tools</div>
+                                </div>
+                                <div class="stat-icon">🛠️</div>
                             </div>
                         </div>
 
-                        <div class="welcome-disclaimer">
-                            <h3>LEGAL DISCLAIMER</h3>
-                            <p>This toolkit is for authorized security testing and educational purposes only.</p>
-                            <p>Unauthorized access to computer systems is illegal. Use responsibly.</p>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <div class="stat-value" id="tools-used">0</div>
+                                    <div class="stat-label">Tools Used Today</div>
+                                </div>
+                                <div class="stat-icon">📈</div>
+                            </div>
                         </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <div class="stat-value" id="scans-completed">0</div>
+                                    <div class="stat-label">Scans Completed</div>
+                                </div>
+                                <div class="stat-icon">✅</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <div class="stat-value" id="favorite-count">0</div>
+                                    <div class="stat-label">Favorite Tools</div>
+                                </div>
+                                <div class="stat-icon">⭐</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Categories Grid -->
+                    <div class="welcome-grid">
+                        <div class="welcome-card" onclick="showToolById('port_scanner')">
+                            <div class="card-icon">[NET]</div>
+                            <h3>Network Tools</h3>
+                            <p>Port scanning, network mapping, WiFi analysis, and traffic monitoring</p>
+                        </div>
+
+                        <div class="welcome-card" onclick="showToolById('caesar_cipher')">
+                            <div class="card-icon">[CRYPTO]</div>
+                            <h3>Cryptography</h3>
+                            <p>Ciphers, encoding, hash generation, and encryption tools</p>
+                        </div>
+
+                        <div class="welcome-card" onclick="showToolById('sql_injection')">
+                            <div class="card-icon">[WEB]</div>
+                            <h3>Web Security</h3>
+                            <p>SQL injection testing, XSS detection, and vulnerability scanning</p>
+                        </div>
+
+                        <div class="welcome-card" onclick="showToolById('password_strength')">
+                            <div class="card-icon">[PWD]</div>
+                            <h3>Password Tools</h3>
+                            <p>Strength analysis, hash cracking, and password generation</p>
+                        </div>
+
+                        <div class="welcome-card" onclick="showToolById('phishing_detector')">
+                            <div class="card-icon">[SOC]</div>
+                            <h3>Social Engineering</h3>
+                            <p>Phishing detection, email analysis, and security awareness</p>
+                        </div>
+
+                        <div class="welcome-card" onclick="showToolById('wifi_scanner')">
+                            <div class="card-icon">[WIFI]</div>
+                            <h3>WiFi Tools</h3>
+                            <p>Network scanning, security testing, and wireless analysis</p>
+                        </div>
+                    </div>
+
+                    <!-- Legal Disclaimer -->
+                    <div class="welcome-disclaimer">
+                        <h3>⚠️ LEGAL DISCLAIMER</h3>
+                        <p>This toolkit is for authorized security testing and educational purposes only.</p>
+                        <p>Unauthorized access to computer systems is illegal. Always obtain proper authorization before testing.</p>
                     </div>
                 </div>
 
                 <!-- Tool Panels Container -->
                 <div id="tool-panels">
-                    <!-- Tool panels will be dynamically created here -->
+                    <!-- Tool panels will be dynamically created here by JavaScript -->
                 </div>
             </main>
         </div>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2024 Hacking Tools Suite | Use responsibly and ethically</p>
+            <p>&copy; 2024 Hacking Tools Suite | Use responsibly and ethically | Educational purposes only</p>
         </footer>
     </div>
 
     <!-- Modals -->
+    
     <!-- Security Tips Modal -->
     <div class="modal" id="tips-modal">
         <div class="modal-content">
             <span class="close" onclick="closeTipsModal()">&times;</span>
             <h2>Security Best Practices</h2>
             <div class="tips-list" id="tips-list">
-                <!-- Tips will be loaded here -->
+                <div class="result-box">
+                    <div class="result-title">🔒 Always Get Authorization</div>
+                    <p>Never test systems you don't own or have explicit permission to test.</p>
+                </div>
+                <div class="result-box">
+                    <div class="result-title">📝 Document Everything</div>
+                    <p>Keep detailed records of all testing activities and findings.</p>
+                </div>
+                <div class="result-box">
+                    <div class="result-title">🛡️ Use Strong Passwords</div>
+                    <p>Always use complex, unique passwords for different accounts.</p>
+                </div>
+                <div class="result-box">
+                    <div class="result-title">🔐 Enable 2FA</div>
+                    <p>Two-factor authentication adds an extra layer of security.</p>
+                </div>
+                <div class="result-box">
+                    <div class="result-title">⚠️ Stay Updated</div>
+                    <p>Keep all software and tools updated to the latest versions.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -232,17 +343,37 @@
             <h2>About Hacking Tools Suite</h2>
             <div class="about-content">
                 <p>A comprehensive collection of security and penetration testing tools designed for authorized security testing, educational purposes, and security research.</p>
-                <h3>Features</h3>
-                <ul>
+                
+                <h3 style="color: var(--accent-cyan); margin-top: 24px; margin-bottom: 12px;">Features</h3>
+                <ul style="color: var(--text-secondary); line-height: 1.8;">
                     <li>Network scanning and analysis tools</li>
                     <li>Cryptographic tools and hash generators</li>
                     <li>Web security vulnerability testers</li>
                     <li>Password strength analyzers</li>
                     <li>Phishing detection tools</li>
                     <li>WiFi security analysis</li>
+                    <li>Modern glassmorphic UI design</li>
+                    <li>Real-time results and analytics</li>
                 </ul>
-                <h3>Version</h3>
-                <p>Version 1.0.0</p>
+                
+                <h3 style="color: var(--accent-cyan); margin-top: 24px; margin-bottom: 12px;">Version</h3>
+                <p style="color: var(--text-secondary);">Version 2.0.0 - Enhanced UI/UX</p>
+                
+                <h3 style="color: var(--accent-cyan); margin-top: 24px; margin-bottom: 12px;">Technology Stack</h3>
+                <p style="color: var(--text-secondary);">Python Flask, HTML5, CSS3, JavaScript, SQLite</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Modal -->
+    <div class="modal" id="favorites-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFavoritesModal()">&times;</span>
+            <h2>Favorite Tools</h2>
+            <div id="favorites-list">
+                <p style="color: var(--text-muted); text-align: center; padding: 40px;">
+                    No favorite tools yet. Click the star icon on any tool to add it to your favorites!
+                </p>
             </div>
         </div>
     </div>
